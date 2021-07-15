@@ -4,7 +4,9 @@ import { InputField } from '../InputField';
 import { TextAreaField } from '../TextAreaField';
 
 export function EditMemberModal(props) {
-  const { isOpen, handleClick, title, buttonText } = props;
+  const { isOpen, handleClick, title, buttonText, memberToEdit } = props;
+  const { id, firstName, lastName, position, description } = memberToEdit;
+
   return (
     <Modal isOpen={isOpen} handleClick={handleClick} title={title}>
       <form
@@ -22,33 +24,33 @@ export function EditMemberModal(props) {
         }}
       >
         <div className='pt-6 space-y-2'>
-          <input type="hidden" id="id" name="id" value={props.memberToEdit.id}></input>
+          <input type="hidden" id="id" name="id" value={id}></input>
           <InputField
             name='name'
             type='text'
             label='First name'
             placeholder='Enter your name'
-            value={props.memberToEdit.firstName}
+            value={firstName}
           />
           <InputField
             name='surname'
             type='text'
             label='Last name'
             placeholder='Enter your surname'
-            value={props.memberToEdit.lastName}
+            value={lastName}
           />
           <InputField
             name='position'
             type='text'
             label='Position'
             placeholder='Enter your position'
-            value={props.memberToEdit.position}
+            value={position}
           />
           <TextAreaField
             name='description'
             label='Description'
             placeholder='Enter your description'
-            value={props.memberToEdit.description}
+            value={description}
           />
         </div>
 

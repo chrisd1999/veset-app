@@ -26,19 +26,13 @@ export function TableMember({
       </td>
       <td className='px-6 py-4 space-x-4 whitespace-nowrap text-right text-sm font-medium'>
         <Button
-          handleClick={(e) => {
-            e.preventDefault();
-            editTeamMember(id);
-          }}
+          handleClick={() => editTeamMember(id)}
           className='px-5 ring-green-400 rounded-2xl text-indigo-600 hover:bg-green-100'
         >
           Edit
         </Button>
         <Button
-          handleClick={(e) => {
-            e.preventDefault();
-            deleteMember(id);
-          }}
+          handleClick={() => deleteMember(id)}
           className='px-3 ring-red-200 rounded-2xl text-red-500 hover:bg-red-100'
         >
           Delete

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Button({ handleClick, children, className }) {
+const Button = React.memo(function Button({ handleClick, children, className }) {
   return (
     <button
       onClick={handleClick}
@@ -9,4 +9,6 @@ export function Button({ handleClick, children, className }) {
       {children}
     </button>
   );
-}
+});
+
+export { Button };
