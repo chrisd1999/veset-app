@@ -11,7 +11,6 @@ import { useModals } from '../../hooks/useModals';
 export function Table() {
   const {
     members,
-    getMemberById,
     createFakeMember,
     createMember,
     editMemberById,
@@ -29,22 +28,18 @@ export function Table() {
   const [memberToDeleteId, setMemberToDeleteId] = useState(null);
   const [memberToEdit, setMemberToEdit] = useState(null);
 
-  useEffect(() => {
-    if (memberToEdit) {
-      toggleEditModal();
-    }
-  }, [memberToEdit]);
-
   return (
     <div>
       <div className='max-w-6xl mx-auto flex justify-end pt-2 space-x-3'>
         <Button
+          dataTestId='fake-member-btn'
           handleClick={createFakeMember}
           className='bg-blue-400 tracking-wide text-white hover:bg-blue-500'
         >
           Add fake team member
         </Button>
         <Button
+          data-dataTestId='new-member-btn'
           handleClick={toggleAddModal}
           className='bg-green-400 tracking-wide text-white hover:bg-green-500'
         >
@@ -55,7 +50,7 @@ export function Table() {
         <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
             <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
-              <table className='min-w-full divide-y divide-gray-200'>
+              <table className='min-w-full divide-y divide-gray-200 '>
                 <TableHead />
                 <TableList
                   members={members}
@@ -63,8 +58,9 @@ export function Table() {
                     toggleConfirmModal();
                     setMemberToDeleteId(id);
                   }}
-                  editTeamMember={async (id) => {
-                    setMemberToEdit(await getMemberById(id));
+                  editTeamMember={(member) => {
+                    setMemberToEdit(member);
+                    toggleEditModal();
                   }}
                 />
               </table>
@@ -86,7 +82,11 @@ export function Table() {
           isOpen={isEditModalOpen}
           handleClick={toggleEditModal}
           memberToEdit={memberToEdit}
-          handleAction={() => {}}
+          handleAction={(id, data) => {
+            toggleEditModal();
+            editMemberById(id, data);
+            setMemberToEdit(null);
+          }}
         />
       )}
       {memberToDeleteId && (

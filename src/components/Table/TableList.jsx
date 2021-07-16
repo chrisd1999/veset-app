@@ -10,7 +10,7 @@ function TableList({ members, deleteMember, editTeamMember }) {
             key={member.id}
             deleteMember={deleteMember}
             editTeamMember={editTeamMember}
-            {...member}
+            teamMember={member}
           />
         );
       })}

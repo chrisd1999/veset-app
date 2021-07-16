@@ -3,8 +3,7 @@ import { Dialog } from '@headlessui/react';
 import { Transition } from '@headlessui/react';
 
 export default function Modal(props) {
-  const { isOpen, handleClick, title, children } =
-    props;
+  const { isOpen, handleClick, title, children } = props;
 
   function closeModal() {
     handleClick(false);
@@ -54,7 +53,7 @@ export default function Modal(props) {
                   {title}
                 </Dialog.Title>
 
-                  {children}
+                {children}
               </div>
             </Transition.Child>
           </div>

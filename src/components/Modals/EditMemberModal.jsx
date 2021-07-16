@@ -19,7 +19,7 @@ export function EditMemberModal(props) {
             description: e.target.description.value,
             id: e.target.id.value
           };
-          props.handleAction(data);
+          props.handleAction(data.id, data);
           props.handleClick(false);
         }}
       >
